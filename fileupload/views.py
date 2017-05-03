@@ -2,11 +2,12 @@
 import json
 
 from django.http import HttpResponse
-from django.views.generic import CreateView, DeleteView, ListView
+from django.views.generic import CreateView, DeleteView, ListView, DetailView
 from .models import Picture
 from .response import JSONResponse, response_mimetype
 from .serialize import serialize
-
+import json
+import random
 
 class PictureCreateView(CreateView):
     model = Picture
@@ -49,6 +50,18 @@ class PictureDeleteView(DeleteView):
         response = JSONResponse(True, mimetype=response_mimetype(request))
         response['Content-Disposition'] = 'inline; filename=files.json'
         return response
+
+def music_genre(request):
+    if request.method == 'POST':
+        context = ['Rock','Pop', 'Hiphop']
+        #return (request,"love")
+        try:
+            JSONdata = json.loads(str(request.body, encoding="utf-8"))
+        except:
+            JSONdata = 'ERROR'
+        print(JSONdata['file'])
+
+        return HttpResponse(random.choice(context))
 
 
 class PictureListView(ListView):

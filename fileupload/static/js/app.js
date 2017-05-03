@@ -31,6 +31,7 @@
                     /\/[^\/]*$/,
                     '/cors/result.html?%s'
                 );
+                $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
                 if (isOnGitHub) {
                     // Demo settings:
@@ -41,7 +42,7 @@
                         disableImageResize: /Android(?!.*Chrome)|Opera/
                             .test(window.navigator.userAgent),
                         maxFileSize: 5000000,
-                        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+                        acceptFileTypes: /(\.|\/)(gif|jpe?g|png|mp3|wav|au)$/i
                     });
                 }
             }
@@ -78,6 +79,29 @@
                     file.$state = function () {
                         return state;
                     };
+
+                    file.$svm = function () {
+                        state = 'pending';
+                        return $http({
+                            url: '/upload/svm/' ,
+                            method: 'POST',
+                            data: {'file': file.url},
+                            xsrfHeaderName: 'X-CSRFToken',
+                            xsrfCookieName: 'csrftoken',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                                    },
+                        }).then(
+                            function (response) {
+                                state = 'resolved';
+                                $scope.resp = response.data;
+                            },
+                            function () {
+                                state = 'rejected';
+                            }
+                        );
+                    };
+
                     file.$destroy = function () {
                         state = 'pending';
                         return $http({
@@ -94,7 +118,7 @@
                                 state = 'rejected';
                             }
                         );
-                    };
+                    };                    
                 } else if (!file.$cancel && !file._index) {
                     file.$cancel = function () {
                         $scope.clear(file);

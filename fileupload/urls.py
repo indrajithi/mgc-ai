@@ -5,13 +5,17 @@ from fileupload.views import (
         jQueryVersionCreateView, AngularVersionCreateView,
         PictureCreateView, PictureDeleteView, PictureListView,
         )
+from . import views
 
 urlpatterns = [
     url(r'^basic/$', BasicVersionCreateView.as_view(), name='upload-basic'),
     url(r'^basic/plus/$', BasicPlusVersionCreateView.as_view(), name='upload-basic-plus'),
     url(r'^new/$', PictureCreateView.as_view(), name='upload-new'),
     url(r'^angular/$', AngularVersionCreateView.as_view(), name='upload-angular'),
+    url(r'^$', AngularVersionCreateView.as_view(), name='upload-angular'),
     url(r'^jquery-ui/$', jQueryVersionCreateView.as_view(), name='upload-jquery'),
     url(r'^delete/(?P<pk>\d+)$', PictureDeleteView.as_view(), name='upload-delete'),
+    #url(r'^svm/(?P<pk>\d+)$', views.music_genre, name='music_genre'),
+    url(r'^svm/$', views.music_genre, name='music_genre'),
     url(r'^view/$', PictureListView.as_view(), name='upload-view'),
 ]
