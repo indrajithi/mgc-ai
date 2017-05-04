@@ -8,6 +8,8 @@ import scipy.io.wavfile
 from python_speech_features import mfcc
 import glob
 import collections
+from pydub import AudioSegment
+import os
 
 def flatten(x):
     if isinstance(x, collections.Iterable):
@@ -16,19 +18,35 @@ def flatten(x):
         return [x]
 
 def extract(file):
-    (rate, data) = scipy.io.wavfile.read(file)
-    mfcc_feat = mfcc(data,rate)
-    #redusing mfcc dimension to 104
-    mm = np.transpose(mfcc_feat)
-    mf = np.mean(mm,axis=1)
-    cf = np.cov(mm)
-    ff=mf  
+    s = file.split('.')
+    file_format = s[len(s) - 1]
+    if file_format != '.wav':
+        try:
+            song = AudioSegment.from_file(file, file_format)
+            #song = AudioSegment.from_mp3(file)
+            song =  song[: 30 * 1000 ]
+            song.export(file[:-3] + "wav", format="wav")
+            file = file[:-3] + "wav"
+        except Exception as e:
+            print(e)
+    try:
+        (rate, data) = scipy.io.wavfile.read(file)
+        mfcc_feat = mfcc(data,rate)
+        #redusing mfcc dimension to 104
+        mm = np.transpose(mfcc_feat)
+        mf = np.mean(mm,axis=1)
+        cf = np.cov(mm)
+        ff=mf  
 
-    #ff is a vector of size 104
-    for i in range(mm.shape[0]):
-        ff = np.append(ff,np.diag(cf,i))
+        #ff is a vector of size 104
+        for i in range(mm.shape[0]):
+            ff = np.append(ff,np.diag(cf,i))
+        os.remove(file)
+        return ff.reshape(1, -1)
+    except Exception as e:
+            print(e)
 
-    return ff
+  
 
 
 def extract_all(audio_dir):
@@ -182,3 +200,16 @@ def gen_suby(sub,n):
         else:
             y = np.vstack([y,np.ones(n) * i])
     return np.array(flatten(y))
+
+def getlabels():
+    labels = ['Blues',
+             'Classical',
+             'Country',
+             'Disco',
+             'Hiphop',
+             'Jazz',
+             'Metal',
+             'Pop',
+             'Reggae',
+             'Rock']
+    return labels

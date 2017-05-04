@@ -8,6 +8,8 @@ from .response import JSONResponse, response_mimetype
 from .serialize import serialize
 import json
 import random
+from mysvm import feature
+from mysvm import svm
 
 class PictureCreateView(CreateView):
     model = Picture
@@ -26,6 +28,9 @@ class PictureCreateView(CreateView):
         return HttpResponse(content=data, status=400, content_type='application/json')
 
 class BasicVersionCreateView(PictureCreateView):
+    template_name_suffix = '_basic_form'
+
+class info(PictureCreateView):
     template_name_suffix = '_basic_form'
 
 
@@ -53,15 +58,17 @@ class PictureDeleteView(DeleteView):
 
 def music_genre(request):
     if request.method == 'POST':
-        context = ['Rock','Pop', 'Hiphop']
+        context = feature.getlabels()
         #return (request,"love")
         try:
             JSONdata = json.loads(str(request.body, encoding="utf-8"))
         except:
             JSONdata = 'ERROR'
         print(JSONdata['file'])
+        #get index of the genre
+        genre = svm.getgenre(JSONdata['file'])
 
-        return HttpResponse(random.choice(context))
+        return HttpResponse(context[int(genre[0]) - 1 ])
 
 
 class PictureListView(ListView):

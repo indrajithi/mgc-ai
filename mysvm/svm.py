@@ -10,14 +10,20 @@ from sklearn import svm
 from sklearn.model_selection import cross_val_score
 import random
 import itertools
-
+import os
+import pkg_resources
+from sklearn.externals import joblib
 #load pre saved variables
-X90 = np.load('npy/X90.npy')
-Y90 = feature.geny(90)
-xt10 = np.load('npy/X10.npy')
-yt10 = feature.geny(10)
-Xall = np.load('npy/Xall.npy')
+resource_package = __name__
+resource_path = '/'.join(('', 'data/Xall.npy'))
+
+Xall_path = pkg_resources.resource_filename(resource_package, resource_path)
+Xall = np.load(Xall_path)
 Yall = feature.geny(100)
+
+resource_path = '/'.join(('', 'data/classifier_10class.pkl'))
+clf_path = pkg_resources.resource_filename(resource_package, resource_path)
+myclf = joblib.load(clf_path)
 """
 def svms():
     #linear kernel=======================================================
@@ -239,7 +245,7 @@ def fitsvm(Xall,Yall,class_l,train_percentage,fold):
         res = clf.predict(test_matrix)
         resTest += acc.get(res,y)
 
-    return resTest / int(fold)
+    return clf , resTest / int(fold)
 
 def best_combinations(class_l, train_percentage, fold):
     class_comb = findsubclass(class_l)
@@ -249,7 +255,7 @@ def best_combinations(class_l, train_percentage, fold):
     for class_count in range(class_comb.shape[0]):
         all_x = gen_sub_data( class_comb[ class_count ] )
         all_y = feature.gen_suby(class_l,100)
-        score = fitsvm(all_x, all_y, class_l, train_percentage, fold)
+        clf , score = fitsvm(all_x, all_y, class_l, train_percentage, fold)
         avg.append(score)
         print(score)
         print(class_count)
@@ -262,7 +268,10 @@ def best_combinations(class_l, train_percentage, fold):
     return  avg
 
 
+def getgenre(filename):
 
-
-
+    music_feature =  feature.extract(os.path.abspath(os.path.dirname(__name__)) \
+        +'/django-jquery-file-upload/' +filename)
+    clf = myclf
+    return clf.predict(music_feature)
 

@@ -36,6 +36,21 @@
 .ng-cloak {
     display: none;
 }
+
+.row li {
+  width: 33.3%;
+  float: left;
+}
+
+img {
+  border: 1 px;
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+
+
+}
 </style>
 </head>
 <body>
@@ -63,11 +78,12 @@
     <h2 class="lead">Version 1.0</h2>
     <ul class="nav nav-tabs">
         <li class="active"><a href="/upload/angular">SVM</a></li>
-        <li><a href="#">Logistic Regression</a></li>
+        <li><a href="/upload/help">Info</a></li>
     </ul>
     <br>
     <blockquote>
-        <p>A Support Vector Machine (SVM) is a discriminative classifier formally defined by a separating hyperplane.<br> In other words, given labeled training data (supervised learning), the algorithm outputs an optimal hyperplane <br>which categorizes new examples.</p>
+     <img src="/static/img/svm.jpeg" style="display: inline-block ;float: left; padding-right: 50px;" class="img-rounded" alt="Cinque Terre" width="300" height="236">
+        <p><em><strong>SVMs are Built to handle classification and regression problems, but mostly used in classification problems. In SVM, each data points plotted in n-dimensional space. Where the value of data points coordinates depending on the features. n is specified by the number of features used in the classifier. To classify the data points, SVM will find a hyperplane that differentiates the classes well.</strong></em></strong></p>
     </blockquote>
     <br>
     <!-- The file upload form used as target for the file upload widget -->
@@ -87,6 +103,7 @@
                     <i class="glyphicon glyphicon-upload"></i>
                     <span>Start upload</span>
                 </button>
+                
                 <button type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>Cancel upload</span>
@@ -155,16 +172,7 @@
 
     </div>
 </div>
-<!-- The blueimp Gallery widget -->
-<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
-    <div class="slides"></div>
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
-</div>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->

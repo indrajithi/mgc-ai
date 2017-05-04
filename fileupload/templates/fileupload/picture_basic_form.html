@@ -4,8 +4,8 @@
 <!-- Force latest IE rendering engine or ChromeFrame if installed -->
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
 <meta charset="utf-8">
-<title>Django jQuery File Upload Demo - Basic version</title>
-<meta name="description" content="File Upload widget with multiple file selection, drag&amp;drop support and progress bar for jQuery. Supports cross-domain, chunked and resumable file uploads. Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.">
+<title>MGC Info</title>
+<meta name="description" content="Music Genre Classification">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap styles -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -23,61 +23,45 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="https://github.com/sigurdga/django-jquery-file-upload">Django jQuery File Upload</a>
+            <a class="navbar-brand" href="#">MGC</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Demo</a></li>
-                <li><a href="https://github.com/sigurdga/django-jquery-file-upload">Source Code</a></li>
-                <li><a href="https://github.com/blueimp/jQuery-File-Upload/wiki">Documentation</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li><a target="_blank" href="https://github.com/indrajithi/mgc-python">Source Code</a></li>
+                <li><a href="#">Documentation</a></li>
             </ul>
         </div>
     </div>
 </div>
 <div class="container">
     <h1>Music Genre Classification</h1>
-    <h2 class="lead">Basic version</h2>
+    <h2 class="lead">Help</h2>
     <ul class="nav nav-tabs">
-        <li class="active"><a href="/upload/basic">Basic</a></li>
-        <li><a href="/upload/basic/plus">Basic Plus</a></li>
-        <li><a href="/upload/new">Basic Plus UI</a></li>
-        <li><a href="/upload/angular">AngularJS</a></li>
-        <li><a href="/upload/jquery-ui">jQuery UI</a></li>
+        <li><a href="/upload/angular">SVM</a></li>
+        <li class="active"><a href="#">Info</a></li>
+        
+        
     </ul>
     <br>
     <blockquote>
-        <p>File Upload widget with multiple file selection, drag&amp;drop support and progress bar for jQuery.<br>
-        Supports cross-domain, chunked and resumable file uploads.</p>
+    <ul>
+        <li>
+            <p >Genre Label Classes: <span class="label  label-danger ">Blues</span> <span class="label  label-primary ">Classical</span> <span class="label  label-success ">Country</span> <span class="label  label-primary ">Disco</span> <span class="label  label-warning">Hiphop</span> <span class="label  label-success ">Jazz</span> <span class="label  label-primary ">Metal</span> <span class="label  label-warning">Pop</span> <span class="label  label-default ">Reggae</span> <span class="label  label-danger ">Rock</span> </p>        
+        </li>
+        <br>
+        <li>
+            <p>Supports Audio and Video files in all formats.</p>
+        </li>
+        <br>
+        <li>
+            <p>Supports multiple file uploads.</p>
+        </li>
+    </ul>
     </blockquote>
     <br>
     <!-- The fileinput-button span is used to style the file input field as button -->
-    <span class="btn btn-success fileinput-button">
-        <i class="glyphicon glyphicon-plus"></i>
-        <span>Select files...</span>
-        <!-- The file input field used as target for the file upload widget -->
-        <input id="fileupload" type="file" name="file" multiple>
-    </span>
-    <br>
-    <br>
-    <!-- The global progress bar -->
-    <div id="progress" class="progress">
-        <div class="progress-bar progress-bar-success"></div>
-    </div>
-    <!-- The container for the uploaded files -->
-    <div id="files" class="files"></div>
-    <br>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Demo Notes</h3>
-        </div>
-        <div class="panel-body">
-            <ul>
-                <li>You can <strong>drag &amp; drop</strong> files from your desktop on this webpage (see <a href="https://github.com/blueimp/jQuery-File-Upload/wiki/Browser-support">Browser support</a>).</li>
-                <li>Please refer to the <a href="https://github.com/blueimp/jQuery-File-Upload">project website</a> and <a href="https://github.com/blueimp/jQuery-File-Upload/wiki">documentation</a> for more information.</li>
-                <li>Built with Twitter's <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> CSS framework and Icons from <a href="http://glyphicons.com/">Glyphicons</a>.</li>
-            </ul>
-        </div>
-    </div>
+    
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
