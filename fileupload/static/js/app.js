@@ -33,7 +33,7 @@
                 );
                 $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-                if (isOnGitHub) {
+                if (!isOnGitHub) {
                     // Demo settings:
                     angular.extend(fileUploadProvider.defaults, {
                         // Enable image resizing, except for Android and Opera,
@@ -41,8 +41,8 @@
                         // send Blob objects via XHR requests:
                         disableImageResize: /Android(?!.*Chrome)|Opera/
                             .test(window.navigator.userAgent),
-                        maxFileSize: 5000000,
-                        acceptFileTypes: /(\.|\/)(gif|jpe?g|png|mp3|wav|au)$/i
+                        maxFileSize: 20000000,
+                        acceptFileTypes: /(\.|\/)(mp4|flv|mp3|wav|au)$/i
                     });
                 }
             }

@@ -28,7 +28,8 @@ def serialize(instance, file_attr='file'):
     return {
         'url': obj.url,
         'name': order_name(obj.name),
-        'type': mimetypes.guess_type(obj.path)[0] or 'image/png',
+        #'type': mimetypes.guess_type(obj.path)[0] or 'image/png',
+        'type': mimetypes.guess_type(obj.path)[0] or 'audio/wav',
         'thumbnailUrl': obj.url,
         'size': obj.size,
         'deleteUrl': reverse('upload-delete', args=[instance.pk]),
