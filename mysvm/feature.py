@@ -20,7 +20,7 @@ def flatten(x):
 def extract(file):
     s = file.split('.')
     file_format = s[len(s) - 1]
-    if file_format != '.wav':
+    if file_format != 'wav':
         try:
             song = AudioSegment.from_file(file, file_format)
             #song = AudioSegment.from_mp3(file)
@@ -41,7 +41,8 @@ def extract(file):
         #ff is a vector of size 104
         for i in range(mm.shape[0]):
             ff = np.append(ff,np.diag(cf,i))
-        os.remove(file)
+        if file_format != 'wav':
+            os.remove(file)
         return ff.reshape(1, -1)
     except Exception as e:
             print(e)
