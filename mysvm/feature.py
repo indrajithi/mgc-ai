@@ -12,12 +12,19 @@ from pydub import AudioSegment
 import os
 
 def flatten(x):
+    """
+    flatten an array
+    """
     if isinstance(x, collections.Iterable):
         return [a for i in x for a in flatten(i)]
     else:
         return [x]
 
 def extract(file):
+    """
+    Extracts audio from a given file
+    First the audio is converted into wav format
+    """
     s = file.split('.')
     file_format = s[len(s) - 1]
     if file_format != 'wav':

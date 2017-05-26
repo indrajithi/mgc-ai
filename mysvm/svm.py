@@ -24,6 +24,12 @@ Yall = feature.geny(100)
 resource_path = '/'.join(('', 'data/classifier_10class.pkl'))
 clf_path = pkg_resources.resource_filename(resource_package, resource_path)
 myclf = joblib.load(clf_path)
+
+resource_path = '/'.join(('', 'data/classifier_10class_prob.pkl'))
+clf_path = pkg_resources.resource_filename(resource_package, resource_path)
+clfprob = joblib.load(clf_path)
+
+label = feature.getlabels()
 """
 def svms():
     #linear kernel=======================================================
@@ -77,8 +83,77 @@ def poly(X,Y):
 
     #return scores.mean()
     return clf
+
+
+def fit(train_percentage,fold=5):
+    """ Accepts parameter: 
+            train_percentage;
+            fold;
+    """
+    #creates a matrix of size 10x100x104
+    #return clf
+    resTrain =0
+    resTest = 0
+    score = 0
+    scores = 0
+
+    for folds in range(fold):
+        #init
+        flag = True
+        flag_train = True
+        start = 0
+        train_matrix = np.array([])
+        test_matrix = np.array([])
+        Xindex = []
+        Tindex = []
+
+        for class_counter in range(10):
+            stack = list(range(start, start+100))  #create an index of size 100
+            for song_counter in range( int(train_percentage) ):
+                index = random.choice(stack)      #randomly choose numbers from index
+                stack.remove(index)               #remove the choosen number from index
+                random_song = Xall[index]         #select songs from that index for training
+                Xindex.append(index)
+                if flag:
+                    train_matrix = random_song
+                    flag = False
+                else:
+                    train_matrix = np.vstack([train_matrix, random_song])
+            start += 100
+
+            #select the remaning songs from the stack for testing
+            for test_counter in range(100 - train_percentage):
+                Tindex.append(stack[test_counter])
+                if flag_train:
+                    test_matrix = Xall[stack[test_counter]]
+                    flag_train = False
+                else:
+                    test_matrix = np.vstack([test_matrix, Xall[stack[test_counter]]])
+
+        Y = feature.geny(train_percentage) 
+        y = feature.geny(100 - train_percentage)
+        #training accuracy
+        clf = svm.SVC(kernel='poly',C=1,probability=True)
+        clf.fit(train_matrix, Y)
+        return clf
+
+
+def getprob(filename):
+    x = feature.extract(filename)
+    clf = clfprob
+    prob = clf.predict_proba(x)[0]
+    dd = dict(zip(feature.getlabels(),prob))
+    m = max(dd,key=dd.get)
+    print(m, dd[m])
+    for i in dd:
+        if i != m:
+            if dd[m] - dd[i] < 0.1:
+                print(i, dd[i], '| diff:',dd[m] - dd[i])
+
+    return dd
     
-     
+
+
 
 def random_cross_validation(train_percentage,fold):
     """ Accepts parameter: 
@@ -157,6 +232,7 @@ def random_cross_validation(train_percentage,fold):
     #print(resTest)
     print("Training accuracy with %d fold %f: " % (int(fold), resTrain / int(fold)))
     print("Testing accuracy with %d fold %f: " % (int(fold), resTest / int(fold)))
+    
 
 
 def findsubclass(class_count):
