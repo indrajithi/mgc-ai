@@ -143,14 +143,25 @@ def getprob(filename):
     clf = clfprob
     prob = clf.predict_proba(x)[0]
     dd = dict(zip(feature.getlabels(),prob))
+    # max probablity 
     m = max(dd,key=dd.get)
     print(m, dd[m])
+    
+    """ to print all probablity and difference from max
     for i in dd:
         if i != m:
-            if dd[m] - dd[i] < 0.1:
+            if dd[m] - dd[i] :
                 print(i, dd[i], '| diff:',dd[m] - dd[i])
+    """
 
-    return dd
+    sorted_genre = sorted(dd,key=dd.get,reverse=True)
+    has_features_of = []
+    for i in sorted_genre:
+        if dd[i] > 0.15:
+            has_features_of.append(i)
+
+
+    return dd, has_features_of
     
 
 
