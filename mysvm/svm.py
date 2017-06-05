@@ -25,6 +25,11 @@ resource_path = '/'.join(('', 'data/classifier_10class.pkl'))
 clf_path = pkg_resources.resource_filename(resource_package, resource_path)
 myclf = joblib.load(clf_path)
 
+#classical metal pop rock
+resource_path = '/'.join(('', 'data/cmpr.pkl'))
+clf_path = pkg_resources.resource_filename(resource_package, resource_path)
+cmpr = joblib.load(clf_path)
+
 resource_path = '/'.join(('', 'data/classifier_10class_prob.pkl'))
 clf_path = pkg_resources.resource_filename(resource_package, resource_path)
 clfprob = joblib.load(clf_path)
@@ -35,9 +40,10 @@ label = feature.getlabels()
 def poly(X,Y):
     """
     Returns a polynomial kernal svm
+    Args:
     """
     #Polynomial kernel=======================================================
-    clf = svm.SVC(kernel='poly',C=1)
+    clf = svm.SVC(kernel='poly',C=1,probability=True)
     clf.fit(X,Y)
 
     return clf
@@ -100,9 +106,12 @@ def getprob(filename):
     Find the probality that a song belongs to each genre. 
     """
     x = feature.extract(filename)
-    clf = clfprob
+    clf = cmpr
     prob = clf.predict_proba(x)[0]
-    dd = dict(zip(feature.getlabels(),prob))
+    #dd = dict(zip(feature.getlabels(),prob))
+    dd = dict(zip(['Classical','Hipop','Jass','Metal','Pop','Rock'],prob))
+    print(prob)
+
     # max probablity 
     m = max(dd,key=dd.get)
     print(m, dd[m])
@@ -110,7 +119,7 @@ def getprob(filename):
     sorted_genre = sorted(dd,key=dd.get,reverse=True)
     has_features_of = []
     for i in sorted_genre:
-        if dd[i] > 0.15:
+        if dd[i] > 0.15 or dd[i] >= dd[m]:
             has_features_of.append(i)
 
 
@@ -165,7 +174,7 @@ def random_cross_validation(train_percentage,fold):
         Y = feature.geny(train_percentage) 
         y = feature.geny(100 - train_percentage)
         #training accuracy
-        clf = svm.SVC(kernel='poly',C=1)
+        clf = svm.SVC(kernel='poly',C=1,probability=True)
         clf.fit(train_matrix, Y)
  
         res = clf.predict(train_matrix)
@@ -177,6 +186,7 @@ def random_cross_validation(train_percentage,fold):
     print("Training accuracy with %d fold %f: " % (int(fold), resTrain / int(fold)))
     print("Testing accuracy with %d fold %f: " % (int(fold), resTest / int(fold)))
     
+
 
 
 def findsubclass(class_count):
@@ -194,6 +204,9 @@ def findsubclass(class_count):
         else:
             labels = np.vstack([labels, i])
     return labels
+
+
+
 
 def gen_sub_data(class_l):
     """
@@ -262,7 +275,7 @@ def fitsvm(Xall,Yall,class_l,train_percentage,fold):
         Y = feature.gen_suby(class_l, train_percentage) 
         y = feature.gen_suby(class_l, 100 - train_percentage)
         #training accuracy
-        clf = svm.SVC(kernel='poly',C=1)
+        clf = svm.SVC(kernel='poly',C=1,probability=True)
         clf.fit(train_matrix, Y)
         #train case
         res = clf.predict(train_matrix)
@@ -303,6 +316,15 @@ def getgenre(filename):
 
     music_feature =  feature.extract(os.path.abspath(os.path.dirname(__name__)) \
         +'/django-jquery-file-upload/' +filename)
-    clf = myclf
+    clf = cmpr
     return clf.predict(music_feature)
 
+def getgenreMulti(filename):
+
+    #music_feature =  feature.extract(os.path.abspath(os.path.dirname(__name__)) \
+    #   +'/django-jquery-file-upload/' +filename)
+    
+    dd, has_features_of = getprob(os.path.abspath(os.path.dirname(__name__)) \
+        +'/django-jquery-file-upload/' +filename)
+
+    return dd, has_features_of 

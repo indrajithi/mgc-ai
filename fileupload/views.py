@@ -41,6 +41,8 @@ class BasicPlusVersionCreateView(PictureCreateView):
 class AngularVersionCreateView(PictureCreateView):
     template_name_suffix = '_angular_form'
 
+class MultiSvm(PictureCreateView):
+    template_name_suffix = '_multi'
 
 class jQueryVersionCreateView(PictureCreateView):
     template_name_suffix = '_jquery_form'
@@ -58,7 +60,8 @@ class PictureDeleteView(DeleteView):
 
 def music_genre(request):
     if request.method == 'POST':
-        context = feature.getlabels()
+        #context = feature.getlabels()
+        context = ['Classical','Hipop','Jass','Metal','Pop','Rock']
         #return (request,"love")
         try:
             JSONdata = json.loads(str(request.body, encoding="utf-8"))
@@ -69,6 +72,26 @@ def music_genre(request):
         genre = svm.getgenre(JSONdata['file'])
 
         return HttpResponse(context[int(genre[0]) - 1 ])
+    if request.method == 'GET':
+        return HttpResponse('nothing here')
+
+def multi_music_genre(request):
+ 
+    if request.method == 'POST':
+        
+        try:
+            JSONdata = json.loads(str(request.body, encoding="utf-8"))
+        except:
+            JSONdata = 'ERROR'
+        print(JSONdata['file'])
+        #get index of the genre
+        dd, genre = svm.getgenreMulti(JSONdata['file'])
+        print(dd)
+
+        return HttpResponse(' '.join(genre))
+
+    if request.method == 'GET':
+        return HttpResponse('nothing here')
 
 
 class PictureListView(ListView):

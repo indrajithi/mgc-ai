@@ -102,6 +102,28 @@
                         );
                     };
 
+                      file.$multisvm = function () {
+                        state = 'pending';
+                        return $http({
+                            url: '/upload/multisvm/' ,
+                            method: 'POST',
+                            data: {'file': file.url},
+                            xsrfHeaderName: 'X-CSRFToken',
+                            xsrfCookieName: 'csrftoken',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                                    },
+                        }).then(
+                            function (response) {
+                                state = 'resolved';
+                                $scope.resp = response.data;
+                            },
+                            function () {
+                                state = 'rejected';
+                            }
+                        );
+                    };
+
                     file.$destroy = function () {
                         state = 'pending';
                         return $http({

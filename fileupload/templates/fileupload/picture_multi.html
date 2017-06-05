@@ -94,10 +94,9 @@ img {
     <h1>Music Genre Classification</h1>
     <h2 class="lead">Version 1.0</h2>
     <ul class="nav nav-tabs">
-        <li class="active"><a href="/">SVM</a></li>
-        <li><a href="/upload/multi">Multi</a></li>
+        <li ><a href="/">SVM</a></li>
+        <li class="active"><a href="/">Multi</a></li>
         <li><a href="/upload/help">Info</a></li>
-
     </ul>
     <br>
     <blockquote>
@@ -178,7 +177,7 @@ img {
                         <i class="glyphicon glyphicon-trash"></i>
                         <span>Delete</span>
                     </button>
-                    <button data-ng-controller="FileDestroyController" type="button" class="btn btn-primary destroy" data-ng-click="file.$svm()" data-ng-hide="!file.$svm"  >
+                    <button data-ng-controller="FileDestroyController" type="button" class="btn btn-primary destroy" data-ng-click="file.$multisvm()" data-ng-hide="!file.$multisvm"  >
                         <i class="glyphicon glyphicon-music"></i>
                         <span ng-if='!resp'>Find Genre</span>
                         <span>{{ resp }}</span>>
