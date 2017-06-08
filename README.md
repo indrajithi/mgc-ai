@@ -1,5 +1,5 @@
 [Demo](https://github.com/indrajithi/mgc-django).
-![Screenshot](img.png)
+![Screenshot](img.jpg)
 Introduction
 ============
 
