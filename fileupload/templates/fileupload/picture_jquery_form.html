@@ -23,7 +23,30 @@
 <!-- CSS adjustments for browsers with JavaScript disabled -->
 <noscript><link rel="stylesheet" href="/static/css/jquery.fileupload-ui-noscript.css"></noscript>
 
+<style type="text/css">
+    
+    .col-md-4 {
+        width: 60%;
+    }
+    
+    .col-md-offset-4 {
+    margin-left: 20%;
+    }
+    
+    #fd {
+    color: #9c27b0;
 
+    }  
+
+    h4 {
+    font-family: Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif;
+    font-size: 26px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+} 
+</style>
 </head>
 
 <body class="signup-page">
@@ -37,67 +60,54 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://www.creative-tim.com">Creative Tim</a>
+                <a class="navbar-brand" href="#">MGC</a>
             </div>
 
             <div class="collapse navbar-collapse" id="navigation-example">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="../components-documentation.html" target="_blank">
-                            Components
+                        <a href="https://github.com/indrajithi/mgc-django" target="_blank">
+                            <i class="fa fa-github  "></i> Source
                         </a>
                     </li>
                     <li>
-                        <a href="http://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-freebie" target="_blank">
-                            <i class="material-icons">unarchive</i> Upgrade to PRO
+                        <a href="#" target="_blank">
+                            <i class="fa fa-file-pdf-o"></i> Docs
                         </a>
                     </li>
-                    <li>
-                        <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                            <i class="fa fa-facebook-square"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="wrapper">
-        <div class="header header-filter" style="background-image: url('/static/img/city.jpg'); background-size: cover; background-position: top center;">
+        <div class="header header-filter" style="background-image: url('/static/img/bac6.jpg'); background-size: cover; background-position: top center;">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                        <div class="card card-signup">
-                            <form class="form" method="" action="">
-                                <div class="header header-primary text-center">
-                                    <h4>Music Genre Classification</h4>
+                  
+                        
+            
+
+   
+
+     <div class="container " style="width: 40%">
+     <div class="card card-signup" style="background-image: url('/static/img/bac8.jpg'); background-size: cover; background-position: top center;">
+     <div class="header header-primary text-center" style="background-image: url('/static/img/bac.jpg'); background-size: cover; background-position: top center;">
+                                    <h4 style=" ">Music Genre Classifier</h4>
                                     <div class="social-line">
-                                        <a href="#pablo" class="btn btn-simple btn-just-icon">
+                                        <a href="https://github.com/indrajithi/mgc-django" class="btn btn-simple btn-just-icon" target="_blank">
                                             <i class="fa fa-github"></i>
                                         </a>
                                         
                                     </div>
                                 </div>
-                                <p class="text-divider">V2.0</p>
-                                <div class="content">
-
-                                     <!-- The file upload form used as target for the file upload widget -->
     <form id="fileupload" action="." method="POST" enctype="multipart/form-data" data-ng-app="demo" data-ng-controller="DemoFileUploadController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}"> {% csrf_token %}
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
         <noscript><input type="hidden" name="redirect" value="#"></noscript>
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <div class="row fileupload-buttonbar">
-            <div class="col-lg-7">
+        <div class="row fileupload-buttonbar" style="padding-left: 90px;">
+            <div class="">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
                     <i class="glyphicon glyphicon-plus"></i>
@@ -133,7 +143,7 @@
         <table class="table table-striped files ng-cloak">
             <tr data-ng-repeat="file in queue">
                 <td data-ng-switch data-on="!!file.thumbnailUrl">
-                    <div class="preview" data-ng-switch-when="true">
+                    <div style=" color: #9c27b0;" class="preview" data-ng-switch-when="true">
                         <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
                     </div>
                     <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
@@ -141,8 +151,9 @@
                 <td>
                     <p class="name" data-ng-switch data-on="!!file.url">
                         <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnailUrl">
-                            <a data-ng-switch-when="true" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
-                            <a data-ng-switch-default data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
+                            
+                            <span >{{file.name}}</span>
+
                         </span>
                         <span data-ng-switch-default>{{file.name}}</span>
                     </p>
@@ -158,13 +169,14 @@
                         <span>Start</span>
                     </button>
                     
-                  <!--  <button data-ng-controller="FileDestroyController" type="button" class="btn btn-danger destroy" data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
+                    <button data-ng-controller="FileDestroyController" type="button" class="btn btn-warning destroy" data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
                         <i class="glyphicon glyphicon-trash"></i>
-                        <span>Delete</span> 
-                    </button> -->
+                        <span>Cancel</span> 
+                    </button> 
                     
                     
-                    <button data-ng-controller="FileDestroyController" type="button" class="btn btn-success destroy" data-ng-click="" 
+                   
+                     <button data-ng-controller="FileDestroyController" type="button" class="btn btn-info destroy" data-ng-click="" 
 
                     data-ng-hide="!resp"  >
                         <i class="glyphicon glyphicon-music"></i>
@@ -173,28 +185,20 @@
 
                     </button>
                     
-                    
                 </td>
+
             </tr>
+
         </table>
         
         {% endverbatim %}
     </form>
-
-
-                                <div class="footer text-center">
-                                    <a href="#pablo" class="btn btn-simple btn-primary btn-lg">Get Started</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-
+        
     </div>
-
+    </div>
+<footer class="footer">
+   
+</footer>
 
 </body>
     <!--   Core JS Files   -->
