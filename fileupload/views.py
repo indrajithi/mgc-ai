@@ -3,7 +3,7 @@ import json
 
 from django.http import HttpResponse
 from django.views.generic import CreateView, DeleteView, ListView, DetailView
-from .models import Picture
+from .models import Picture 
 from .response import JSONResponse, response_mimetype
 from .serialize import serialize
 import json
@@ -59,24 +59,35 @@ class PictureDeleteView(DeleteView):
         return response
 
 def music_genre(request):
+    model = Picture
+
     if request.method == 'POST':
         #context = feature.getlabels()
-        context = ['Classical','Hipop','Jass','Metal','Pop','Rock']
+        context = ['Classical','Hipop','Jazz','Metal','Pop','Rock']
         #return (request,"love")
         try:
             JSONdata = json.loads(str(request.body, encoding="utf-8"))
         except:
             JSONdata = 'ERROR'
-        print(JSONdata['file'])
+        
+        
         #get index of the genre
         genre = svm.getgenre(JSONdata['file'])
+
+        #delete file after finding genre
+        id = JSONdata['delete']
+        instance = model.objects.get(id=id)
+        instance.delete()
 
         return HttpResponse(context[int(genre[0]) - 1 ])
     if request.method == 'GET':
         return HttpResponse('nothing here')
 
+
+
+
 def multi_music_genre(request):
- 
+    model = Picture
     if request.method == 'POST':
         
         try:
@@ -84,11 +95,19 @@ def multi_music_genre(request):
         except:
             JSONdata = 'ERROR'
         print(JSONdata['file'])
+        
         #get index of the genre
         dd, genre = svm.getgenreMulti(JSONdata['file'])
         print(dd)
+        dt = json.dumps(dd)
+
+        #delete file after finding genre
+        id = JSONdata['delete']
+        instance = model.objects.get(id=id)
+        instance.delete()
 
         return HttpResponse(' '.join(genre))
+        #return HttpResponse(dt)
 
     if request.method == 'GET':
         return HttpResponse('nothing here')

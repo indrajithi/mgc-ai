@@ -118,17 +118,20 @@ img {
                 <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
                     <i class="glyphicon glyphicon-plus"></i>
                     <span>Upload Music</span>
-                    <input type="file" name="file" multiple ng-disabled="disabled">
+                    <input type="file" name="file"  ng-disabled="disabled">
                 </span>
-                <button type="button" class="btn btn-primary start" data-ng-click="submit()">
+                <button id="test"  type="button" class="btn btn-danger start" data-ng-click="findGenre()">
                     <i class="glyphicon glyphicon-upload"></i>
-                    <span>Start upload</span>
+                    <span>Find Genre</span>
                 </button>
+
                 
-                <button type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
+                
+               <!--  <button type="button" class="btn btn-danger delete" data-ng-click="delete()">
                     <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel upload</span>
-                </button>
+                    <span>Delete All</span>
+                </button>  -->
+
                 <!-- The loading indicator is shown during file processing -->
                 <div class="fileupload-loading"></div>
             </div>
@@ -170,20 +173,22 @@ img {
                         <i class="glyphicon glyphicon-upload"></i>
                         <span>Start</span>
                     </button>
-                    <button type="button" class="btn btn-warning cancel" data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
-                        <i class="glyphicon glyphicon-ban-circle"></i>
-                        <span>Cancel</span>
-                    </button>
-                    <button data-ng-controller="FileDestroyController" type="button" class="btn btn-danger destroy" data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
+                    
+                  <!--  <button data-ng-controller="FileDestroyController" type="button" class="btn btn-danger destroy" data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
                         <i class="glyphicon glyphicon-trash"></i>
-                        <span>Delete</span>
-                    </button>
-                    <button data-ng-controller="FileDestroyController" type="button" class="btn btn-primary destroy" data-ng-click="file.$svm()" data-ng-hide="!file.$svm"  >
+                        <span>Delete</span> 
+                    </button> -->
+                    
+                    
+                    <button data-ng-controller="FileDestroyController" type="button" class="btn btn-success destroy" data-ng-click="" 
+
+                    data-ng-hide="!resp"  >
                         <i class="glyphicon glyphicon-music"></i>
-                        <span ng-if='!resp'>Find Genre</span>
+                        <span ng-if='!resp'>Label</span>
                         <span>{{ resp }}</span>>
 
                     </button>
+                    
                     
                 </td>
             </tr>

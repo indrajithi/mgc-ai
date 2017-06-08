@@ -8,7 +8,7 @@ admin.autodiscover()
 
 urlpatterns = [
     #url(r'^$', lambda x: HttpResponseRedirect('/upload/')),
-    url(r'^$', include('fileupload.urls')),
+    url(r'^', include('fileupload.urls')),
     url(r'^upload/', include('fileupload.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]

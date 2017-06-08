@@ -108,6 +108,7 @@ def getprob(filename):
     x = feature.extract(filename)
     clf = cmpr
     prob = clf.predict_proba(x)[0]
+    #prob = np.round(prob,decimals=-5)
     #dd = dict(zip(feature.getlabels(),prob))
     dd = dict(zip(['Classical','Hipop','Jass','Metal','Pop','Rock'],prob))
     print(prob)

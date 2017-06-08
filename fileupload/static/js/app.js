@@ -54,6 +54,8 @@
                 $scope.options = {
                     url: url
                 };
+
+
                 if (!isOnGitHub) {
                     $scope.loadingFiles = true;
                     $http.get(urlview)
@@ -67,7 +69,9 @@
                             }
                         );
                 }
+
             }
+
         ])
 
         .controller('FileDestroyController', [
@@ -85,7 +89,7 @@
                         return $http({
                             url: '/upload/svm/' ,
                             method: 'POST',
-                            data: {'file': file.url},
+                            data: {'file': file.url, 'delete' : file.deleteId},
                             xsrfHeaderName: 'X-CSRFToken',
                             xsrfCookieName: 'csrftoken',
                             headers: {
@@ -107,7 +111,7 @@
                         return $http({
                             url: '/upload/multisvm/' ,
                             method: 'POST',
-                            data: {'file': file.url},
+                            data: {'file': file.url,  'delete' : file.deleteId},
                             xsrfHeaderName: 'X-CSRFToken',
                             xsrfCookieName: 'csrftoken',
                             headers: {
@@ -117,12 +121,18 @@
                             function (response) {
                                 state = 'resolved';
                                 $scope.resp = response.data;
+                                //$scope.resp = JSON.parse(response.data);
                             },
                             function () {
                                 state = 'rejected';
                             }
                         );
+
+
                     };
+                  
+
+
 
                     file.$destroy = function () {
                         state = 'pending';

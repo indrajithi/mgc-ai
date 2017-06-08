@@ -45,6 +45,7 @@
                     // asynchronously outside of the $digest cycle:
                     $timeout(function () {
                         scope.$apply();
+
                     });
                 },
                 $config;
@@ -71,7 +72,10 @@
                                 },
                                 i;
                             for (i = 0; i < data.files.length; i += 1) {
+                                var filename = data.files[i].name;
                                 data.files[i]._index = i;
+                                data.files[i] = data.files[i].slice(0,1000000); //select only 1 mb of the file to upload
+                                data.files[i].name = filename;
                             }
                             file.$cancel = function () {
                                 scope.clear(data.files);
@@ -86,24 +90,57 @@
                             file.$response = function () {
                                 return data.response();
                             };
+                            
+                             file.$destroy = function () {
+                        state = 'pending';
+                        return $http({
+                            url: file.deleteUrl,
+                            method: file.deleteType,
+                            xsrfHeaderName: 'X-CSRFToken',
+                            xsrfCookieName: 'csrftoken'
+                        }).then(
+                            function () {
+                                state = 'resolved';
+                                $scope.clear(file);
+                            },
+                            function () {
+                                state = 'rejected';
+                            }
+                        );
+                    };
+
                             if (file.$state() === 'rejected') {
                                 file._$submit = submit;
                             } else {
                                 file.$submit = submit;
                             }
                             scope.$apply(function () {
-                                var method = scope.option('prependFiles') ?
-                                        'unshift' : 'push';
+                                //var method = scope.option('prependFiles') ?
+                                  //     'unshift' : 'push';
+                                 var method = 'push'
                                 Array.prototype[method].apply(
-                                    scope.queue,
+                                    scope.queue ,
                                     data.files
                                 );
                                 if (file.$submit &&
                                         (scope.option('autoUpload') ||
                                         data.autoUpload) &&
                                         data.autoUpload !== false) {
+
+                                 //   file.$destroy();
+                                   // scope.queue.pop();
+
+
                                     file.$submit();
+                                  //  scope.queue = scope.queue[scope.queue.length - 1];
+                                  if(scope.queue.length > 1)
+                                  scope.queue.shift();
+
+                                                      
+
                                 }
+
+                               
                             });
                         }
                     );
@@ -139,7 +176,7 @@
                     return this.scope().queue.length;
                 },
                 dataType: 'json',
-                autoUpload: false
+                autoUpload: true
             };
             this.$get = [
                 function () {
@@ -233,6 +270,7 @@
                 $scope.replace = function (oldFiles, newFiles) {
                     var queue = this.queue,
                         file = oldFiles[0],
+                        //file = undefined,
                         i,
                         j;
                     for (i = 0; i < queue.length; i += 1) {
@@ -247,7 +285,7 @@
                 $scope.applyOnQueue = function (method) {
                     var list = this.queue.slice(0),
                         i,
-                        file;
+                     file;
                     for (i = 0; i < list.length; i += 1) {
                         file = list[i];
                         if (file[method]) {
@@ -257,6 +295,21 @@
                 };
                 $scope.submit = function () {
                     this.applyOnQueue('$submit');
+                  
+                    
+                };
+                $scope.findGenre = function () {
+                    
+                    this.applyOnQueue('$svm');
+                    
+                };
+                $scope.findMultiGenre = function () {
+                    this.applyOnQueue('$multisvm');
+                }
+
+                
+                $scope.delete = function () {
+                    this.applyOnQueue('$destroy');
                 };
                 $scope.cancel = function () {
                     this.applyOnQueue('$cancel');
@@ -269,6 +322,7 @@
                 $element.fileupload(angular.extend(
                     {scope: function () {
                         return $scope;
+
                     }},
                     fileUpload.defaults
                 )).on('fileuploadadd', function (e, data) {

@@ -33,6 +33,7 @@ def serialize(instance, file_attr='file'):
         'thumbnailUrl': obj.url,
         'size': obj.size,
         'deleteUrl': reverse('upload-delete', args=[instance.pk]),
+        'deleteId' : instance.pk,
         'deleteType': 'DELETE',
     }
 
