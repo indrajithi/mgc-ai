@@ -42,10 +42,10 @@ class AngularVersionCreateView(PictureCreateView):
     template_name_suffix = '_angular_form'
 
 class MultiSvm(PictureCreateView):
-    template_name_suffix = '_multi'
+    template_name_suffix = '_svm_multi'
 
 class jQueryVersionCreateView(PictureCreateView):
-    template_name_suffix = '_jquery_form'
+    template_name_suffix = '_svm'
 
 
 class PictureDeleteView(DeleteView):
@@ -95,7 +95,7 @@ def multi_music_genre(request):
         except:
             JSONdata = 'ERROR'
         print(JSONdata['file'])
-        
+
         #get index of the genre
         dd, genre = svm.getgenreMulti(JSONdata['file'])
         print(dd)

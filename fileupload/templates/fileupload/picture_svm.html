@@ -110,12 +110,12 @@
             <div class="">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    <span>Upload Music</span>
+                    <i class="fa fa-upload"></i>
+                    <span>Upload File</span>
                     <input type="file" name="file"  ng-disabled="disabled">
                 </span>
                 <button id="test"  type="button" class="btn btn-danger start" data-ng-click="findGenre()">
-                    <i class="glyphicon glyphicon-upload"></i>
+                    <i class="fa fa-music"></i>
                     <span>Find Genre</span>
                 </button>
 
@@ -160,7 +160,7 @@
                     <div data-ng-show="file.error"><span class="label label-important">Error</span> {{file.error}}</div>
                 </td>
                 <td>
-                    <p class="size">{{file.size | formatFileSize}}</p>
+                    <p class="size">{{formatFileSize}}</p>
                     <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
                 </td>
                 <td>

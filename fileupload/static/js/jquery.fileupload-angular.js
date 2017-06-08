@@ -298,6 +298,15 @@
                   
                     
                 };
+                $scope.find = function() {
+                     var x = document.getElementById('ismulti').checked;
+                    if(x)
+                        this.applyOnQueue('$svm');
+                    else
+                        this.applyOnQueue('$multisvm');
+
+   
+                }
                 $scope.findGenre = function () {
                     
                     this.applyOnQueue('$svm');

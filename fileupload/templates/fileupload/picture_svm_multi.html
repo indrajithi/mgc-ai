@@ -23,6 +23,9 @@
 <!-- CSS adjustments for browsers with JavaScript disabled -->
 <noscript><link rel="stylesheet" href="/static/css/jquery.fileupload-ui-noscript.css"></noscript>
 
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
 <style type="text/css">
     
     .col-md-4 {
@@ -46,10 +49,37 @@
     font-weight: 500;
     line-height: 26.4px;
 } 
-</style>
+
+
+
+  .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+  .toggle.ios .toggle-handle { border-radius: 20px; }
+
+  .toggle.android { border-radius: 0px;}
+  .toggle.android .toggle-handle { border-radius: 0px; }
+  </style>
+
+  <script type="text/javascript">
+function isMulti(){
+
+    var x = document.getElementById('ismulti').checked;
+    if(x){
+        document.getElementById('find').data-ng-click = "findGenre()"
+    }
+    else 
+    {
+        document.getElementById('find').data-ng-click = "findMultiGenre()"
+    }
+   
+    
+}
+</script> 
+
 </head>
 
 <body class="signup-page">
+
+
     <nav class="navbar navbar-transparent navbar-absolute">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -68,7 +98,11 @@
                     <li>
                         <a href="https://github.com/indrajithi/mgc-django" target="_blank">
                             <i class="fa fa-github  "></i> Source
+
+
                         </a>
+                        
+<input  id="ismulti" checked data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="Single" data-off="Multi"  data-style="ios" type="checkbox" onclick="isMulti()"> 
                     </li>
                     <li>
                         <a href="#" target="_blank">
@@ -98,8 +132,15 @@
                                     <div class="social-line">
                                         <a href="https://github.com/indrajithi/mgc-django" class="btn btn-simple btn-just-icon" target="_blank">
                                             <i class="fa fa-github"></i>
+
                                         </a>
-                                        
+                                        <a href="" class="btn btn-simple btn-just-icon" target="_blank">
+                                            <i class="fa fa-music "></i>
+                                        </a>
+
+                                        <a href="" class="btn btn-simple btn-just-icon" target="_blank">
+                                            <i class="fa fa-info-circle "></i>
+                                        </a>
                                     </div>
                                 </div>
     <form id="fileupload" action="." method="POST" enctype="multipart/form-data" data-ng-app="demo" data-ng-controller="DemoFileUploadController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}"> {% csrf_token %}
@@ -110,16 +151,15 @@
             <div class="">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    <span>Upload Music</span>
+                    <i class="fa fa-upload"></i>
+                    <span>Upload File</span>
                     <input type="file" name="file"  ng-disabled="disabled">
                 </span>
-                <button id="test"  type="button" class="btn btn-danger start" data-ng-click="findGenre()">
-                    <i class="glyphicon glyphicon-upload"></i>
-                    <span>Find Genre</span>
+                <button id="find"  type="button" class="btn btn-danger start" data-ng-click="find()">
+                    <i class="fa fa-music "></i>
+                    <span> Find Genre</span>
                 </button>
-
-                
+                       
                 
                <!--  <button type="button" class="btn btn-danger delete" data-ng-click="delete()">
                     <i class="glyphicon glyphicon-ban-circle"></i>
@@ -160,7 +200,7 @@
                     <div data-ng-show="file.error"><span class="label label-important">Error</span> {{file.error}}</div>
                 </td>
                 <td>
-                    <p class="size">{{file.size | formatFileSize}}</p>
+                   
                     <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
                 </td>
                 <td>
@@ -181,7 +221,7 @@
                     data-ng-hide="!resp"  >
                         <i class="glyphicon glyphicon-music"></i>
                         <span ng-if='!resp'>Label</span>
-                        <span>{{ resp }}</span>>
+                        <span>{{ resp }}</span>
 
                     </button>
                     
@@ -199,7 +239,7 @@
 <footer class="footer">
    
 </footer>
-
+ 
 </body>
     <!--   Core JS Files   -->
     <script src="/static/js/jquery.min.js" type="text/javascript"></script>
@@ -248,5 +288,6 @@
 <!-- The main application script -->
 <script src="/static/js/app.js"></script>
 <script src="/static/js/csrf.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 </html>

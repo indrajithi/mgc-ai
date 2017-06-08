@@ -120,7 +120,7 @@ def getprob(filename):
     sorted_genre = sorted(dd,key=dd.get,reverse=True)
     has_features_of = []
     for i in sorted_genre:
-        if dd[i] > 0.15 or dd[i] >= dd[m]:
+        if (dd[i] > 0.15 or dd[i] >= dd[m]) and len(has_features_of) < 3:
             has_features_of.append(i)
 
 
