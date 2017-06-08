@@ -31,7 +31,7 @@ class BasicVersionCreateView(PictureCreateView):
     template_name_suffix = '_basic_form'
 
 class info(PictureCreateView):
-    template_name_suffix = '_basic_form'
+    template_name_suffix = '_svm_info'
 
 
 class BasicPlusVersionCreateView(PictureCreateView):

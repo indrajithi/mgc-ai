@@ -90,7 +90,7 @@ function isMulti(){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                 <i class="fa fa-music"></i>MGC</a>
             </div>
 
@@ -101,11 +101,12 @@ function isMulti(){
                             <i class="fa fa-home"></i> Home
                         </a>
                     </li>
-                    <li>
+                     <li>
                         <a href="/help" >
                             <i class="fa fa-question"></i> Help
                         </a>
                     </li>
+                    <li>
                     <li>
                         <a href="https://github.com/indrajithi/mgc-django" target="_blank">
                             <i class="fa fa-github  "></i> Source
@@ -113,7 +114,7 @@ function isMulti(){
 
                         </a>
                         
-<input  id="ismulti" checked data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="Single" data-off="Multi"  data-style="ios" type="checkbox" > 
+<input  id="ismulti" checked data-toggle="toggle" data-onstyle="success" data-offstyle="warning" data-on="Single" data-off="Multi"  data-style="ios" type="checkbox" onclick="isMulti()"> 
                     </li>
                     <li>
                         <a href="#" >
@@ -137,7 +138,7 @@ function isMulti(){
    
 
      <div class="container " style="width: 40%">
-     <div class="card card-signup" style="background-image: url('/static/img/bac8.jpg'); background-size: cover; background-position: top center;">
+     <div class="card card-signup" style="background-color: #cccccc; background-size: cover; background-position: top center;">
      <div class="header header-primary text-center" style="background-image: url('/static/img/bac.jpg'); background-size: cover; background-position: top center;">
                                     <h4 style=" ">Music Genre Classifier</h4>
                                     <div class="social-line">
@@ -145,105 +146,32 @@ function isMulti(){
                                             <i class="fa fa-github"></i>
 
                                         </a>
-                                        <a href="" class="btn btn-simple btn-just-icon" target="_blank">
+                                        <a href="/" class="btn btn-simple btn-just-icon" >
                                             <i class="fa fa-music "></i>
                                         </a>
 
-                                        <a href="/help" class="btn btn-simple btn-just-icon" >
+                                        <a href="" class="btn btn-simple btn-just-icon" >
                                             <i class="fa fa-info-circle "></i>
                                         </a>
                                     </div>
                                 </div>
-    <form id="fileupload" action="." method="POST" enctype="multipart/form-data" data-ng-app="demo" data-ng-controller="DemoFileUploadController" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}"> {% csrf_token %}
-        <!-- Redirect browsers with JavaScript disabled to the origin page -->
-        <noscript><input type="hidden" name="redirect" value="#"></noscript>
-        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <div class="row fileupload-buttonbar" style="padding-left: 90px;">
-            <div class="">
-                <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
-                    <i class="fa fa-upload"></i>
-                    <span>Upload File</span>
-                    <input type="file" name="file"  ng-disabled="disabled">
-                </span>
-                <button id="find"  type="button" class="btn btn-danger start" data-ng-click="find()">
-                    <i class="fa fa-music "></i>
-                    <span> Find Genre</span>
-                </button>
-                       
-                
-               <!--  <button type="button" class="btn btn-danger delete" data-ng-click="delete()">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Delete All</span>
-                </button>  -->
-
-                <!-- The loading indicator is shown during file processing -->
-                <div class="fileupload-loading"></div>
-            </div>
-            <!-- The global progress information -->
-            <div class="col-lg-5 fade" data-ng-class="{in: active()}">
-                <!-- The global progress bar -->
-                <div class="progress progress-striped active" data-file-upload-progress="progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
-                <!-- The extended global progress information -->
-                <div class="progress-extended">&nbsp;</div>
-            </div>
-        </div>
-        {% verbatim %}
-        <br>
-        <!-- The table listing the files available for upload/download -->
-        <table class="table table-striped files ng-cloak" >
-            <tr data-ng-repeat="file in queue">
-                <td data-ng-switch data-on="!!file.thumbnailUrl">
-                    <div style=" color: #9c27b0;" class="preview" data-ng-switch-when="true">
-                        <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
-                    </div>
-                    <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
-                </td>
-                <td>
-                    <p class="name" data-ng-switch data-on="!!file.url">
-                        <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnailUrl">
-                            
-                            <span >{{file.name}}</span>
-
-                        </span>
-                        <span data-ng-switch-default>{{file.name}}</span>
-                    </p>
-                    <div data-ng-show="file.error"><span class="label label-important">Error</span> {{file.error}}</div>
-                </td>
-                <td>
-                   
-                    <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary start" data-ng-click="file.$submit()" data-ng-hide="!file.$submit">
-                        <i class="glyphicon glyphicon-upload"></i>
-                        <span>Start</span>
-                    </button>
-                    
-                    <button data-ng-controller="FileDestroyController" type="button" class="btn btn-warning destroy" data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
-                        <i class="glyphicon glyphicon-trash"></i>
-                        <span>Cancel</span> 
-                    </button> 
-                    
-                    
-                   
-                     <button data-ng-controller="FileDestroyController" type="button" class="btn btn-info destroy" data-ng-click="" 
-
-                    data-ng-hide="!resp"  >
-                        <i class="glyphicon glyphicon-music"></i>
-                        <span ng-if='!resp'>Label</span>
-                        <span>{{ resp }}</span>
-
-                    </button>
-                    
-                </td>
-
-            </tr>
-
-        </table>
+     <blockquote>
+    
         
-        {% endverbatim %}
-    </form>
+    <ul>
+        <li> 
+            <p > Genre Label Classes:  <br /><br /><span class="label  label-primary ">Classical</span> <span class="label  label-danger "> Hiphop</span> <span class="label  label-success ">Jazz</span> <span class="label  label-primary ">Metal</span> <span class="label  label-warning">Pop</span>  <span class="label  label-danger ">Rock</span> </p>        
+        </li>
+        <br>
+        <li>
+            <p>Supports Audio and Video files in all formats.</p>
+        </li>
+        <br>
+        <li>
+            <p>Toggle <span class="label  label-success ">Single</span> to output a single label. and <span class="label  label-warning ">Multi</span> to output multiple labels. Multiple labels shows that the given input has features of multiple genres. </p>
+        </li>
+    </ul>
+    </blockquote>
         
     </div>
     </div>
