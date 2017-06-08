@@ -11,9 +11,9 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/fonts.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
 
     <!-- CSS Files -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
@@ -23,7 +23,7 @@
 <!-- CSS adjustments for browsers with JavaScript disabled -->
 <noscript><link rel="stylesheet" href="/static/css/jquery.fileupload-ui-noscript.css"></noscript>
 
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link href="/static/css/bootstrap-toggle.min.css" rel="stylesheet">
 
 
 <style type="text/css">
@@ -59,21 +59,7 @@
   .toggle.android .toggle-handle { border-radius: 0px; }
   </style>
 
-  <script type="text/javascript">
-function isMulti(){
-
-    var x = document.getElementById('ismulti').checked;
-    if(x){
-        document.getElementById('find').data-ng-click = "findGenre()"
-    }
-    else 
-    {
-        document.getElementById('find').data-ng-click = "findMultiGenre()"
-    }
-   
-    
-}
-</script> 
+  
 
 </head>
 
@@ -158,15 +144,15 @@ function isMulti(){
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
         <noscript><input type="hidden" name="redirect" value="#"></noscript>
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <div class="row fileupload-buttonbar" style="padding-left: 90px;">
+        <div class="row fileupload-buttonbar" style="padding-left: 70px;">
             <div class="">
                 <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
+                <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled} " style="font-size: 15px; padding-bottom: 16px;padding-top: 16px;">
                     <i class="fa fa-upload"></i>
                     <span>Upload File</span>
                     <input type="file" name="file"  ng-disabled="disabled">
                 </span>
-                <button id="find"  type="button" class="btn btn-danger start" data-ng-click="find()">
+                <button id="find"  type="button" class="btn btn-danger start" data-ng-click="find()" style="font-size: 15px; padding-bottom: 16px;padding-top: 16px;">
                     <i class="fa fa-music "></i>
                     <span> Find Genre</span>
                 </button>
@@ -228,7 +214,7 @@ function isMulti(){
                     
                    
                      <button data-ng-controller="FileDestroyController" type="button" class="btn btn-info destroy" data-ng-click="" 
-
+                     style="font-size: 15px; padding-bottom: 25px;padding-top: 25px;"
                     data-ng-hide="!resp"  >
                         <i class="glyphicon glyphicon-music"></i>
                         <span ng-if='!resp'>Label</span>
@@ -268,8 +254,8 @@ function isMulti(){
 
 
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/angular.min.js"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="/static/js/vendor/jquery.ui.widget.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
@@ -277,7 +263,7 @@ function isMulti(){
 <!-- The Canvas to Blob plugin is included for image resizing functionality -->
 <script src="/static/js/canvas-to-blob.min.js"></script>
 <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
 <!-- blueimp Gallery script -->
 <script src="/static/js/jquery.blueimp-gallery.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
@@ -299,6 +285,7 @@ function isMulti(){
 <!-- The main application script -->
 <script src="/static/js/app.js"></script>
 <script src="/static/js/csrf.js"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<script src="/static/js/bootstrap-toggle.min.js"></script>
 
 </html>
