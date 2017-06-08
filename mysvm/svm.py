@@ -95,10 +95,14 @@ def fit(train_percentage,fold=5):
 
         Y = feature.geny(train_percentage) 
         y = feature.geny(100 - train_percentage)
-        #training accuracy
+
         clf = svm.SVC(kernel='poly',C=1,probability=True)
         clf.fit(train_matrix, Y)
-        return clf
+        #training accuracy
+        res = clf.predict(test_matrix)
+        ac = acc.get(res,y)
+        print("accuracy = ", ac)
+        return ac, clf
 
 
 def getprob(filename):
