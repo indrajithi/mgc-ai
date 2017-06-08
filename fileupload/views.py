@@ -3,7 +3,7 @@ import json
 
 from django.http import HttpResponse
 from django.views.generic import CreateView, DeleteView, ListView, DetailView
-from .models import Picture 
+from .models import Picture, Music
 from .response import JSONResponse, response_mimetype
 from .serialize import serialize
 import json
@@ -11,8 +11,10 @@ import random
 from mysvm import feature
 from mysvm import svm
 
-class PictureCreateView(CreateView):
-    model = Picture
+
+
+class MusicCreateView(CreateView):
+    model = Music
     fields = "__all__"
 
     def form_valid(self, form):
@@ -27,29 +29,20 @@ class PictureCreateView(CreateView):
         data = json.dumps(form.errors)
         return HttpResponse(content=data, status=400, content_type='application/json')
 
-class BasicVersionCreateView(PictureCreateView):
-    template_name_suffix = '_basic_form'
 
-class info(PictureCreateView):
+
+class info(MusicCreateView):
     template_name_suffix = '_svm_info'
 
 
-class BasicPlusVersionCreateView(PictureCreateView):
-    template_name_suffix = '_basicplus_form'
 
-
-class AngularVersionCreateView(PictureCreateView):
-    template_name_suffix = '_angular_form'
-
-class MultiSvm(PictureCreateView):
+class MultiSvm(MusicCreateView):
     template_name_suffix = '_svm_multi'
 
-class jQueryVersionCreateView(PictureCreateView):
-    template_name_suffix = '_svm'
 
 
-class PictureDeleteView(DeleteView):
-    model = Picture
+class MusicDeleteView(DeleteView):
+    model = Music
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -59,7 +52,7 @@ class PictureDeleteView(DeleteView):
         return response
 
 def music_genre(request):
-    model = Picture
+    model = Music
 
     if request.method == 'POST':
         #context = feature.getlabels()
@@ -87,7 +80,7 @@ def music_genre(request):
 
 
 def multi_music_genre(request):
-    model = Picture
+    model = Music
     if request.method == 'POST':
         
         try:
@@ -106,7 +99,7 @@ def multi_music_genre(request):
         instance = model.objects.get(id=id)
         instance.delete()
 
-        return HttpResponse(' '.join(genre))
+        return HttpResponse(', '.join(genre))
         #return HttpResponse(dt)
 
     if request.method == 'GET':
@@ -114,7 +107,7 @@ def multi_music_genre(request):
 
 
 class PictureListView(ListView):
-    model = Picture
+    model = Music
 
     def render_to_response(self, context, **response_kwargs):
         files = [ serialize(p) for p in self.get_queryset() ]

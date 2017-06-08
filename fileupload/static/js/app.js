@@ -17,7 +17,7 @@
 
 
     var isOnGitHub = window.location.hostname === 'blueimp.github.io',
-        url = '/upload/angular/',
+        url = '/upload/musicUpload/',
         urlview = '/upload/view/';
 
     angular.module('demo', [
@@ -56,7 +56,7 @@
                 };
 
 
-                if (!isOnGitHub) {
+                if (isOnGitHub) {
                     $scope.loadingFiles = true;
                     $http.get(urlview)
                         .then(
