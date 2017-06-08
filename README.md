@@ -1,5 +1,5 @@
 [Demo](https://github.com/indrajithi/mgc-django).
-
+![Screenshot](img.png)
 Introduction
 ============
 
@@ -24,7 +24,7 @@ Requirements
 
 Installation
 ============
-
+* `git clone https://github.com/indrajithi/mgc-django.git`
 * `pip install -r requirements.txt` 
 * `python manage.py migrate`
 * `python manage.py runserver`
