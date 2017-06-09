@@ -1,4 +1,4 @@
-[Demo](https://github.com/indrajithi/mgc-django).
+[Demo](#)
 ![Screenshot](img.jpg)
 Introduction
 ============
@@ -29,6 +29,14 @@ Installation
 * `python manage.py migrate`
 * `python manage.py runserver`
 * go to `localhost:8000` and upload some files
+
+Architecture
+============
+![Architecture](arc.png)
+
+Flow Chart
+==========
+![Flow Chart](flowchart.png)
 
 License
 =======
