@@ -3,6 +3,9 @@ Music Genre Classifier
 
 ![Screenshot](img.jpg)
 
+
+### Table of Contents
+
 - [Introduction](#introduction)
 - [Requirements](#requirements) 
 - [Installation](#installation)
