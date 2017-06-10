@@ -317,14 +317,14 @@ def best_combinations(class_l, train_percentage, fold):
     return  avg
 
 
-def getgenre(filename):
+def getGenre(filename):
 
     music_feature =  feature.extract(os.path.abspath(os.path.dirname(__name__)) \
         +'/django-jquery-file-upload/' +filename)
     clf = cmpr
     return clf.predict(music_feature)
 
-def getgenreMulti(filename):
+def getMultiGenre(filename):
 
     #music_feature =  feature.extract(os.path.abspath(os.path.dirname(__name__)) \
     #   +'/django-jquery-file-upload/' +filename)

@@ -35,7 +35,6 @@ class info(MusicCreateView):
     template_name_suffix = '_svm_info'
 
 
-
 class MultiSvm(MusicCreateView):
     template_name_suffix = '_svm_multi'
 
@@ -65,7 +64,7 @@ def music_genre(request):
         
         
         #get index of the genre
-        genre = svm.getgenre(JSONdata['file'])
+        genre = svm.getGenre(JSONdata['file'])
 
         #delete file after finding genre
         id = JSONdata['delete']
@@ -90,7 +89,7 @@ def multi_music_genre(request):
         print(JSONdata['file'])
 
         #get index of the genre
-        dd, genre = svm.getgenreMulti(JSONdata['file'])
+        dd, genre = svm.getMultiGenre(JSONdata['file'])
         print(dd)
         dt = json.dumps(dd)
 
