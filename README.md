@@ -199,5 +199,5 @@ For some songs we can say that it has feature of multiple genres. So we have als
 
 License
 =======
-MIT, as the original project. See LICENSE.txt
+MIT, GPL v2.0. See LICENSE.txt
 
