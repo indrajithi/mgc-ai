@@ -27,15 +27,15 @@ def extract(file):
     """
     s = file.split('.')
     file_format = s[len(s) - 1]
-    if file_format != 'wav':
-        try:
-            song = AudioSegment.from_file(file, file_format)
-            #song = AudioSegment.from_mp3(file)
-            song =  song[: 30 * 1000 ]
-            song.export(file[:-3] + "wav", format="wav")
-            file = file[:-3] + "wav"
-        except Exception as e:
-            print(e)
+
+    try:
+        song = AudioSegment.from_file(file, file_format)
+        #song = AudioSegment.from_mp3(file)
+        song =  song[: 30 * 1000 ]
+        song.export(file[:-3] + "wav", format="wav")
+        file = file[:-3] + "wav"
+    except Exception as e:
+        print(e)
     try:
         (rate, data) = scipy.io.wavfile.read(file)
         mfcc_feat = mfcc(data,rate)

@@ -75,7 +75,9 @@
                                 var filename = data.files[i].name;
                                 data.files[i]._index = i;
                                 data.files[i] = data.files[i].slice(0,1000000); //select only 1 mb of the file to upload
+                               
                                 data.files[i].name = filename;
+
                             }
                             file.$cancel = function () {
                                 scope.clear(data.files);

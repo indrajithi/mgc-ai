@@ -190,7 +190,7 @@ Results
 | SVM RBF Kernel | 99% | 12% |
 | **SVM Poly Kernel** | **99%** | **64%** |
 
-**While choosing 6 genre classes we are getting an accuracy of 85%**
+** 6 genre classes we are getting an accuracy of 85%**
 
 ## Conclusion
 
@@ -199,5 +199,5 @@ For some songs we can say that it has feature of multiple genres. So we have als
 
 License
 =======
-MIT, as the original project. See LICENSE.txt
+GPL v2.0, MIT. See LICENSE.txt
 

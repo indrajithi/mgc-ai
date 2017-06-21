@@ -62,7 +62,7 @@ def music_genre(request):
         except:
             JSONdata = 'ERROR'
         
-        
+        print("JSONdata['file']: ",JSONdata['file'])
         #get index of the genre
         genre = svm.getGenre(JSONdata['file'])
 

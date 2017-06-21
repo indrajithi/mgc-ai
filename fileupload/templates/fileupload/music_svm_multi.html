@@ -41,6 +41,8 @@
 
     }  
 
+    @media only screen and (min-device-width: 801px){ #con {width: 40%} } 
+  
     h4 {
     font-family: Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif;
     font-size: 26px;
@@ -136,7 +138,7 @@ function isMulti(){
 
    
 
-     <div class="container " style="width: 40%">
+     <div class="container " style="" id = "con">
      <div class="card card-signup" style="background-image: url('/static/img/bac8.jpg'); background-size: cover; background-position: top center;">
      <div class="header header-primary text-center" style="background-image: url('/static/img/bac.jpg'); background-size: cover; background-position: top center;">
                                     <h4 style=" ">Music Genre Classifier</h4>
@@ -195,12 +197,12 @@ function isMulti(){
             <tr data-ng-repeat="file in queue">
                 <td data-ng-switch data-on="!!file.thumbnailUrl">
                     <div style=" color: #9c27b0;" class="preview" data-ng-switch-when="true">
-                        <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
+                        <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>
                     </div>
                     <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
                 </td>
                 <td>
-                    <p class="name" data-ng-switch data-on="!!file.url">
+                    <p class="name" data-ng-switch data-on="!!file.url" >
                         <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnailUrl">
                             
                             <span >{{file.name}}</span>
@@ -227,21 +229,27 @@ function isMulti(){
                     
                     
                    
-                     <button data-ng-controller="FileDestroyController" type="button" class="btn btn-info destroy" data-ng-click="" 
-                     style="font-size: 15px; padding-bottom: 25px;padding-top: 25px;"
+
+                     
+                    
+                </td>
+                
+
+
+            </tr>
+            
+
+        </table>
+        <div data-ng-repeat="file in queue">
+        <button data-ng-controller="FileDestroyController" type="button" class="btn btn-info " data-ng-click="" 
+                     style="font-size: 18px; padding-bottom: 20px;padding-top: 20px; width:100%"
                     data-ng-hide="!resp"  >
                         <i class="glyphicon glyphicon-music"></i>
                         <span ng-if='!resp'>Label</span>
                         <span>{{ resp }}</span>
 
                     </button>
-                    
-                </td>
-
-            </tr>
-
-        </table>
-        
+        </div>
         {% endverbatim %}
     </form>
         
@@ -302,3 +310,4 @@ function isMulti(){
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 </html>
+

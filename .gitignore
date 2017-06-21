@@ -13,3 +13,4 @@ db
 *.pyc
 local_settings.py
 .idea
+.gitignore
