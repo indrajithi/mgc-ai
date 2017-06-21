@@ -199,5 +199,9 @@ For some songs we can say that it has feature of multiple genres. So we have als
 
 License
 =======
+<<<<<<< HEAD
 GPL v2.0, MIT. See LICENSE.txt
+=======
+MIT, GPL v2.0. See LICENSE.txt
+>>>>>>> 9104cb209fdb9badb4217274d0a8eb0fb509beef
 
