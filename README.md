@@ -190,7 +190,7 @@ Results
 | SVM RBF Kernel | 99% | 12% |
 | **SVM Poly Kernel** | **99%** | **64%** |
 
-** 6 genre classes we are getting an accuracy of 85%**
+**6 genre classes we are getting an accuracy of 85%**
 
 ## Conclusion
 
