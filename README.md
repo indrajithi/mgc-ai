@@ -56,9 +56,6 @@ Our web application is written in Python using Django framework. It uses a train
     We have written views for HTTP POST and GET requests to upload music and find genre. There need to be models `(models.py)` for files that we store in the database. The file is automatically deleted once we find the genre. 
     Python objects can be saved in to the disk by using a module `Joblib` from `sklearn.externals`: `joblib.dump (object, filename)`. Our trained classifier is saved in to the disk and loaded by `joblib.load(filename)`. Since our training dataset is small, our classifier object does not need to be compressed. Our web application uses the package `mysvm` which we developed to extract features and to find the genre label.
     
-Architecture
-------------
-![Architecture](arc.png)
 
 Flow Chart
 ----------
