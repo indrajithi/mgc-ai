@@ -1,1 +1,2 @@
 fileupload/static/* linguist-vendored
+*.js linguist-detectable=false
