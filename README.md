@@ -55,11 +55,6 @@ Installation
 Our web application is written in Python using Django framework. It uses a trained `Poly Kernel SVM` for finding the genre. Every HTTP request is first gone to the url dispatcher `urls.py` which will contain a view present in `views.py`. We can write rules in `views.py` to handle each HTTP request on that url.
     We have written views for HTTP POST and GET requests to upload music and find genre. There need to be models `(models.py)` for files that we store in the database. The file is automatically deleted once we find the genre. 
     Python objects can be saved in to the disk by using a module `Joblib` from `sklearn.externals`: `joblib.dump (object, filename)`. Our trained classifier is saved in to the disk and loaded by `joblib.load(filename)`. Since our training dataset is small, our classifier object does not need to be compressed. Our web application uses the package `mysvm` which we developed to extract features and to find the genre label.
-    
-
-Flow Chart
-----------
-![Flow Chart](flowchart.png)
 
 The browser will send HTTP request as GET or POST from our Web App. GET request can be for loading templates which is an html file or for a static file, which includes front end JavaScript files (js), stylesheets (css), true type fonts(ttf) and image files. User upload the file by a HTTP POST. Our front end javascript will convert the given file as **BLOB (binary large objects)** files of size 1MB before POST. After a successful POST, user can send a GET request for finding the genre label. 
 
