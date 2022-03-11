@@ -1,5 +1,5 @@
 Django==1.11
-Pillow==8.1.1
+Pillow==9.0.1
 numpy==1.12.1
 olefile==0.44
 pydub==0.18.0
