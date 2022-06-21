@@ -1,6 +1,6 @@
 Django==1.11
 Pillow==8.1.1
-numpy==1.12.1
+numpy==1.22.0
 olefile==0.44
 pydub==0.18.0
 python-speech-features==0.5
