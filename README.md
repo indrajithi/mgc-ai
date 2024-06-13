@@ -31,7 +31,20 @@ Music Genre Classifier
 Introduction
 ------------
 
-Music is categorized into subjective categories called genres. With the growth of the internet and multimedia systems applications that deal with the musical databases gained importance and demand for Music Information Retrieval (MIR) applications increased. Musical genres have no strict definitions and boundaries as they arise through a complex interaction between the public, marketing, historical, and cultural factors. This is Web Application that Classify Music in to genres. 
+Music is categorized into subjective categories called genres. With the growth of the internet and multimedia systems applications that deal with the musical databases gained importance and demand for Music Information Retrieval (MIR) applications increased. Musical genres have no strict definitions and boundaries as they arise through a complex interaction between the public, marketing, historical, and cultural factors. This is Web Application that Classify Music in to genres.
+
+Accuracy
+=======
+
+| Classifier | Testing Accuracy |
+|:---------: | :--------------: |
+| K-Nearest Neighbors | 53%  |
+| Logistic Regression| 54% |
+| SVM Linear Kernel | 52% |
+| SVM RBF Kernel | 12% |
+| SVM Poly Kernel | 64% |
+| **SVM Poly Kernel (6 classes)** | **85%** |
+ 
 
 Requirements
 ------------
@@ -170,19 +183,6 @@ Accepts a filename and returns top three genre labels based on the probability.
  Module for finding the accuracy.
 * ***get ( res, test ) :***  
 Compares two arrays and returns the accuracy of their match.
-
-Results
-=======
-
-| Classifier | Training Accuracy | Testing Accuracy |
-|:---------: | :---------------: | :--------------: |
-| K-Nearest Neighbors        |                   | 53%              |
-| Logistic Regression|  75.778% | 54% |
-| SVM Linear Kernel | 99% | 52% |
-| SVM RBF Kernel | 99% | 12% |
-| **SVM Poly Kernel** | **99%** | **64%** |
-
-**6 genre classes we are getting an accuracy of 85%**
 
 ## Conclusion
 
